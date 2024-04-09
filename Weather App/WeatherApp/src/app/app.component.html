@@ -1,13 +1,20 @@
+<div class="search">
+  <form>
+    <input type="text" placeholder="Search City">
+  </form>
+</div>
+
+
 <div class="container">
   
   <div class="upper-data">
-<img src="../assets/hot.jpg" *ngIf="14 > 15">
-<img src="../assets/cold.jpg" *ngIf="15 > 14">
+<img src="../assets/hot.jpg" *ngIf="getTemperature() > 15">
+<img src="../assets/cold.jpg" *ngIf="getTemperature() <=14">
   </div> 
 
   <div class="weather-data">
-    <div class="location">City</div>
-    <div class="temperature">{{0}}°C</div>
+    <div class="location">{{getCityName()}}</div>
+    <div class="temperature">{{getTemperature()}}°C</div>
   </div>
 
   <div class="lower-data">
@@ -18,19 +25,19 @@
     <div class="more-info-container">
       <div class="info-block">
         <div class="info-block-label">
-          <span>Min</span>
+          <span>Min Temp</span>
         </div>
         <div class="info-block-value">
-          10°C
+          {{getTempMin()}}°C
         </div>
       </div>
   
       <div class="info-block">
         <div class="info-block-label">
-          <span>Max</span>
+          <span>Max Temp</span>
         </div>
         <div class="info-block-value">
-          20°C
+          {{getTempMax()}}°C
         </div>
       </div>
     </div>
@@ -41,16 +48,16 @@
           <span>Humidity</span>
         </div>
         <div class="info-block-value">
-          0%
+          {{getHumidity()}}%
         </div>
       </div>
   
       <div class="info-block">
         <div class="info-block-label">
-          <span>Wind speed</span>
+          <span>Wind</span>
         </div>
         <div class="info-block-value">
-          0 km/h
+          {{getWind()}}km/h
         </div>
       </div>
     </div>
