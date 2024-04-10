@@ -9,13 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'WeatherApp';
-  cityName: string = 'Paris';
+  cityName: string = 'Cluj';
   weatherData: any;
   form: FormGroup;
 
@@ -38,8 +38,11 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    this.weatherService.getWeatherData(this.cityName);
-    this.cityName = '';
+    this.cityName = this.form.value.cityName;
+  this.weatherService.getWeatherData(this.cityName).subscribe((data) => {
+    this.weatherData = data;
+
+  });
 
   }
 
