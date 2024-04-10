@@ -1,6 +1,6 @@
 <div class="search">
-  <form>
-    <input type="text" placeholder="Search City">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input id="name" type="text" formControlName="cityName" placeholder="Search City">
   </form>
 </div>
 
@@ -8,8 +8,8 @@
 <div class="container">
   
   <div class="upper-data">
-<img src="../assets/hot.jpg" *ngIf="getTemperature() > 15">
-<img src="../assets/cold.jpg" *ngIf="getTemperature() <=14">
+<img src="../assets/hot.jpg" *ngIf="getTemperature() >= 15">
+<img src="../assets/cold.jpg" *ngIf="getTemperature() <=15">
   </div> 
 
   <div class="weather-data">
