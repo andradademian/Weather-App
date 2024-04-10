@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WeatherService } from './services/weather.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -12,15 +15,32 @@ import { WeatherService } from './services/weather.service';
 })
 export class AppComponent implements OnInit {
   title = 'WeatherApp';
-  cityName: string = 'Dubai';
+  cityName: string = 'Paris';
   weatherData: any;
+  form: FormGroup;
+
+  
 
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService, private formBuilder: FormBuilder) { 
+    this.form = this.formBuilder.group({
+      cityName: ['']
+    });
+  }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      cityName: '',
+    });
+    this.weatherService.getWeatherData(this.cityName);
     this.getWeather();
     
+  }
+
+  onSubmit() {
+    this.weatherService.getWeatherData(this.cityName);
+    this.cityName = '';
+
   }
 
   getWeather(): void {

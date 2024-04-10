@@ -1,6 +1,6 @@
 <div class="search">
-  <form>
-    <input type="text" placeholder="Search City">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input id="name" type="text" formControlName="cityName" placeholder="Search City">
   </form>
 </div>
 
